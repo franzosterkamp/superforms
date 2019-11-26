@@ -52,7 +52,8 @@ const InputTitle = styled.h3`
 
 const ToDoCard = styled.div`
   display: flex;
-  width: 80;
+  justify-content: space-evenly;
+  width: 90%;
   margin: 20px auto;
   height: 40px;
   background-color: ${props => props.theme.primary};
@@ -61,21 +62,18 @@ const ToDoCard = styled.div`
 const ToDo = styled.span`
   padding: 10px;
   font-size: 1rem;
-  background-color: white;
   color: black;
 `;
 
 const Time = styled.span`
   padding: 7px;
   font-size: 1rem;
-  color: white;
-  background-color: lightgray;
+  color: black;
 `;
 const DateTag = styled.span`
   padding: 7px;
   font-size: 1rem;
-  color: white;
-  background-color: lightgray;
+  color: black;
 `;
 
 function CardForm() {
@@ -83,14 +81,15 @@ function CardForm() {
   const [date, setDate] = React.useState("");
   const [time, setTime] = React.useState("");
   const [content, setContent] = React.useState(false);
-  const toDoElement = {
-    toDo,
-    date,
-    time
-  };
+  const [toDoElement, setToDoElement] = React.useState("");
+
   function handleSubmit(event) {
     event.preventDefault();
-
+    setToDoElement({
+      toDo,
+      date,
+      time
+    });
     setContent(true);
     console.log(toDoElement);
   }
@@ -129,9 +128,9 @@ function CardForm() {
       <Button type="reset">Reset</Button>
       {content && (
         <ToDoCard>
-          <ToDo>{toDoElement.toDo} </ToDo>
-          <Time>{toDoElement.time}</Time>
           <DateTag>{toDoElement.date}</DateTag>
+          <Time>{toDoElement.time}</Time>
+          <ToDo>{toDoElement.toDo} </ToDo>
         </ToDoCard>
       )}
     </Formular>

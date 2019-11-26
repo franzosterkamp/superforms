@@ -1,6 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import CardForm from "./components/CardForm";
 import { ThemeProvider } from "emotion-theming";
 import themes from "./components/Theme";

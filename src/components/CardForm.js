@@ -50,23 +50,89 @@ const InputTitle = styled.h3`
   color: ${props => props.theme.text};
 `;
 
+const ToDoCard = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  margin: 20px auto;
+  height: 40px;
+  background-color: ${props => props.theme.primary};
+`;
+
+const ToDo = styled.span`
+  padding: 10px;
+  font-size: 1rem;
+  color: black;
+`;
+
+const Time = styled.span`
+  padding: 7px;
+  font-size: 1rem;
+  color: black;
+`;
+const DateTag = styled.span`
+  padding: 7px;
+  font-size: 1rem;
+  color: black;
+`;
+
 function CardForm() {
+  const [toDo, setToDo] = React.useState("");
+  const [date, setDate] = React.useState("");
+  const [time, setTime] = React.useState("");
+  const [content, setContent] = React.useState(false);
+  const [toDoElement, setToDoElement] = React.useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setToDoElement({
+      toDo,
+      date,
+      time
+    });
+    setContent(true);
+    console.log(toDoElement);
+  }
+
   return (
-    <Formular>
+    <Formular onSubmit={handleSubmit}>
       <InputTitle>What to Do ??</InputTitle>
       <label>
-        <ToDoInput rows="30" type="text" required />
+        <ToDoInput
+          rows="30"
+          type="text"
+          value={toDo}
+          onChange={event => setToDo(event.target.value)}
+          required
+        />
       </label>
       <InputTitle>What Date ??</InputTitle>
       <label>
-        <DateInput type="date" required />
+        <DateInput
+          type="date"
+          value={date}
+          onChange={event => setDate(event.target.value)}
+          required
+        />
       </label>
       <InputTitle>What Time ??</InputTitle>
       <label>
-        <TimeInput type="time" required />
+        <TimeInput
+          type="time"
+          value={time}
+          onChange={event => setTime(event.target.value)}
+          required
+        />
       </label>
       <Button>Submit</Button>
       <Button type="reset">Reset</Button>
+      {content && (
+        <ToDoCard>
+          <DateTag>{toDoElement.date}</DateTag>
+          <Time>{toDoElement.time}</Time>
+          <ToDo>{toDoElement.toDo} </ToDo>
+        </ToDoCard>
+      )}
     </Formular>
   );
 }

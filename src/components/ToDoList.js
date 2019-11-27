@@ -8,7 +8,7 @@ export default function ToDoList() {
   return (
     <div>
       {toDos.map(toDo => (
-        <ToDo key={toDo.time} {...toDo}></ToDo>
+        <ToDo key={toDo.index} {...toDo}></ToDo>
       ))}
     </div>
   );

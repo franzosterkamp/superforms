@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { addToDos } from "./api/protocols";
+import { addToDos, removeToDos, getToDos } from "./api/protocols";
 import ToDoList from "./ToDoList";
 
 const Formular = styled.form`
@@ -39,7 +39,7 @@ const Button = styled.button`
   margin: 10px auto;
   font-weight: bold;
   font-size: 12px;
-  padding: 5px;
+  inline-size: fit-content;
   border-radius: 5px;
   background-color: ${props => props.theme.background};
   border: black solid 2px;
@@ -70,40 +70,47 @@ function CardForm() {
     addToDos(toDoElement);
   }
 
+  function handleRemove() {
+    removeToDos();
+    getToDos();
+  }
+
   return (
-    <Formular onSubmit={handleSubmit}>
-      <InputTitle> to Do </InputTitle>
-      <label>
-        <ToDoInput
-          rows="30"
-          type="text"
-          value={task}
-          onChange={event => setTask(event.target.value)}
-          required
-        />
-      </label>
-      <InputTitle> Date </InputTitle>
-      <label>
-        <DateInput
-          type="date"
-          value={date}
-          onChange={event => setDate(event.target.value)}
-          required
-        />
-      </label>
-      <InputTitle> Time </InputTitle>
-      <label>
-        <TimeInput
-          type="time"
-          value={time}
-          onChange={event => setTime(event.target.value)}
-          required
-        />
-      </label>
-      <Button>Submit</Button>
-      <Button type="reset">Reset</Button>
-      <ToDoList />
-    </Formular>
+    <>
+      <Formular onSubmit={handleSubmit}>
+        <InputTitle> to Do </InputTitle>
+        <label>
+          <ToDoInput
+            rows="30"
+            type="text"
+            value={task}
+            onChange={event => setTask(event.target.value)}
+            required
+          />
+        </label>
+        <InputTitle> Date </InputTitle>
+        <label>
+          <DateInput
+            type="date"
+            value={date}
+            onChange={event => setDate(event.target.value)}
+            required
+          />
+        </label>
+        <InputTitle> Time </InputTitle>
+        <label>
+          <TimeInput
+            type="time"
+            value={time}
+            onChange={event => setTime(event.target.value)}
+            required
+          />
+        </label>
+        <Button>Submit</Button>
+        <ToDoList />
+      </Formular>
+      <Button onClick={handleRemove}>Reset Taks</Button>
+    </>
   );
 }
 

@@ -13,3 +13,8 @@ export function addToDos(toDo) {
   toDos.push(toDo);
   setToDos(toDos);
 }
+
+export function removeToDos() {
+  const empty = [];
+  setToDos(empty);
+}

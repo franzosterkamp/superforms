@@ -1,12 +1,15 @@
 import React from "react";
+import { getToDos } from "./api/protocols";
+import ToDo from "./ToDo";
 
-function ToDoList(){
-const toDoElement =
+export default function ToDoList() {
+  const toDos = getToDos();
 
-return <div> 
-  
-
-
-  
-</div>
+  return (
+    <div>
+      {toDos.map(toDo => (
+        <ToDo key={toDo.time} {...toDo}></ToDo>
+      ))}
+    </div>
+  );
 }

@@ -1,3 +1,11 @@
 import React from "react";
 
-function ToDo()
+export default function ToDo({ date, time, task }) {
+  return (
+    <div>
+      <div>{date}</div>
+      <div>{time}</div>
+      <div>{task}</div>
+    </div>
+  );
+}

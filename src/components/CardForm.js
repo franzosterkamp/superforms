@@ -81,22 +81,26 @@ function CardForm() {
   const [date, setDate] = React.useState("");
   const [time, setTime] = React.useState("");
   const [content, setContent] = React.useState(false);
-  const [toDoElement, setToDoElement] = React.useState("");
+  const [toDoElement, setToDoElement] = React.useState({});
 
   function handleSubmit(event) {
     event.preventDefault();
+
     setToDoElement({
       toDo,
       date,
       time
     });
+
+    const toDoJson = JSON.stringify(toDoElement);
+    localStorage.setItem("toDo", toDoJson);
+
     setContent(true);
-    console.log(toDoElement);
   }
 
   return (
     <Formular onSubmit={handleSubmit}>
-      <InputTitle>What to Do ??</InputTitle>
+      <InputTitle> to Do </InputTitle>
       <label>
         <ToDoInput
           rows="30"
@@ -106,7 +110,7 @@ function CardForm() {
           required
         />
       </label>
-      <InputTitle>What Date ??</InputTitle>
+      <InputTitle> Date </InputTitle>
       <label>
         <DateInput
           type="date"
@@ -115,7 +119,7 @@ function CardForm() {
           required
         />
       </label>
-      <InputTitle>What Time ??</InputTitle>
+      <InputTitle> Time </InputTitle>
       <label>
         <TimeInput
           type="time"
